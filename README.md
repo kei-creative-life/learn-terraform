@@ -22,3 +22,14 @@ CONTAINER ID        IMAGE                     COMMAND                  CREATED  
 terraform destroy
 ```
 
+## 2.EC2インスタンスを生成・削除してみる
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build
+- EC2生成する設定をmain.tfに記載する
+  - 東京RegionだとVPCやサブネットの生成が事前に必要となる
+- 各用語について理解する
+  - Terraform Block
+  - Providers
+  - Resources
+- 環境変数を`variables.tf`に定義してmain.tfで参照する
+- applyコマンドでインスタンスを生成できることを確認する
+- destroyコマンドでインスタンスを削除できること確認する
