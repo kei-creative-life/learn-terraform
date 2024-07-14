@@ -45,3 +45,4 @@ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build
 ## 4. WebサーバーにNginxをインストールして起動してみる
 - セキュリティグループのインバウンドルールにport80番を追加
 - user_dataを用いてnginxをインストールして起動する
+![スクリーンショット 2024-07-15 0 00 04](https://github.com/user-attachments/assets/9ddd4638-4103-4048-b172-a68e92f84846)
