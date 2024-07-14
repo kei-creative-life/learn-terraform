@@ -21,6 +21,14 @@ resource "aws_instance" "web_server" {
   subnet_id              = var.subnet_id
   key_name               = var.key_name
 
+  user_data = <<-EOF
+              #!/bin/bash
+              dnf update -y
+              dnf install nginx -y
+              systemctl start nginx
+              systemctl enable nginx
+              EOF
+
   tags = {
     Name = "dev-web-server"
   }
