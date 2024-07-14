@@ -46,3 +46,60 @@ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build
 - セキュリティグループのインバウンドルールにport80番を追加
 - user_dataを用いてnginxをインストールして起動する
 ![スクリーンショット 2024-07-15 0 00 04](https://github.com/user-attachments/assets/9ddd4638-4103-4048-b172-a68e92f84846)
+
+## 5. WebサーバーにNuxt3プロジェクトをcloneして起動してみる
+勉強のためにEC2にssh接続して以下を実行する
+
+- voltaをインストール
+```
+curl https://get.volta.sh | bash
+source ~/.bashrc
+```
+- nodeをインストール
+```
+volta install node
+node -v
+```
+- gitをインストール
+```
+sudo dnf install git -y
+```
+- 鍵を生成
+```
+ssh-keygen -t ed25519 -C "githubに登録しているアドレス"
+＊生成した鍵をgithubで登録
+ssh -T git@github.com
+```
+- git clone
+```
+git clone git@github.com:kei-creative-life/nuxt3-project.git
+```
+- nuxtサーバーを起動
+```
+npm install
+npm dev
+```
+- nginxの設定を変更
+```
+sudo vi /etc/nginx/conf.d/nuxt.conf
+
+server {
+    listen 80;
+    server_name "EC2のパブリックIPアドレスを設定します";
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+# 構文チェック
+sudo nginx -t
+
+# nginxをリロードする
+sudo systemctl reload nginx
+```
