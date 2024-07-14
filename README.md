@@ -22,7 +22,7 @@ CONTAINER ID        IMAGE                     COMMAND                  CREATED  
 terraform destroy
 ```
 
-## 2.EC2インスタンスを生成・削除してみる
+## 2. EC2インスタンスを生成・削除してみる
 https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build
 - EC2生成する設定をmain.tfに記載する
   - 東京RegionだとVPCやサブネットの生成が事前に必要となる
@@ -41,3 +41,7 @@ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-build
   - パブリックサブネット用にサブネットを作成
 - ルートテーブルを作成
   - インターネットゲートウェイを作成しただけだとインターネット接続できない
+
+## 4. WebサーバーにNginxをインストールして起動してみる
+- セキュリティグループのインバウンドルールにport80番を追加
+- user_dataを用いてnginxをインストールして起動する
